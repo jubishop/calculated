@@ -23,6 +23,14 @@ module Calculated
       return Ranks.new(id, account, **ranks)
     end
 
+    def self.play_style(id)
+      data = request("api/player/#{id}/play_style/all")
+      entries = data['dataPoints'].to_h { |entry|
+        [entry['name'], entry['average'].round(2)]
+      }
+      return entries
+    end
+
     ##### PRIVATE #####
 
     RANK_MAP = {
@@ -39,13 +47,14 @@ module Calculated
 
     def self.request(path)
       uri = HTTP::URI.new(
-        scheme: 'https',
-        host: 'calculated.gg',
-        path: path)
+          scheme: 'https',
+          host: 'calculated.gg',
+          path: path)
 
       begin
         response = HTTP.auth(@token).get(uri)
         raise Calculated::Error, uri unless response.status.success?
+
         data = response.parse
       rescue HTTP::Error
         raise Calculated::Error, uri
