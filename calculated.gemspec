@@ -11,5 +11,6 @@ Gem::Specification.new do |spec|
   spec.metadata["source_code_uri"] = "https://github.com/jubishop/calculated"
   spec.files         = Dir["lib/**/*.rb"]
   spec.add_runtime_dependency 'http'
+  spec.add_runtime_dependency 'rlranks'
   spec.add_runtime_dependency 'rstruct'
 end
