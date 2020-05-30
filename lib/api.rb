@@ -3,6 +3,7 @@ require 'http'
 require 'rlranks'
 
 require_relative 'exceptions'
+require_relative 'play_style'
 
 module Calculated
   class API
@@ -24,11 +25,7 @@ module Calculated
     end
 
     def self.play_style(id)
-      data = request("api/player/#{id}/play_style/all")
-      entries = data['dataPoints'].to_h { |entry|
-        [entry['name'], entry['average'].round(2)]
-      }
-      return entries
+      return PlayStyle.new(request("api/player/#{id}/play_style/all"))
     end
 
     ##### PRIVATE #####
