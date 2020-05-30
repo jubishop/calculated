@@ -6,7 +6,9 @@ module Calculated
       return request("api/player/#{id}")
     end
 
-    def request(path)
+    ##### PRIVATE #####
+
+    def self.request(path)
       uri = HTTP::URI.new(
         scheme: 'https',
         host: 'calculated.gg',
@@ -22,5 +24,6 @@ module Calculated
 
       return data
     end
+    private_class_method :request
   end
 end
