@@ -49,7 +49,7 @@ module Calculated
           path: path)
 
       begin
-        response = HTTP.auth(@token).get(uri)
+        response = HTTP.get(uri)
         raise Calculated::Error, uri unless response.status.success?
 
         data = response.parse
