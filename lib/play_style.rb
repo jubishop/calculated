@@ -6,7 +6,7 @@ module Calculated
 
     def initialize(data)
       @attributes = data['dataPoints'].to_h { |entry|
-        [entry['name'], entry['average'].round(2)]
+        [entry['name'], entry['average']]
       }
     end
 
