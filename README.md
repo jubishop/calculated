@@ -14,6 +14,8 @@ You will need these dependencies too:
 
 ```ruby
 gem 'http'
+gem 'datacache', github: 'jubishop/datacache'
+gem 'rlranks', github: 'jubishop/RLRanks'
 gem 'rstruct', github: 'jubishop/rstruct'
 ```
 

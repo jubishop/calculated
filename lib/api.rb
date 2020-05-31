@@ -1,5 +1,6 @@
 require 'http'
 
+require 'datacache'
 require 'rlranks'
 
 require_relative 'exceptions'
@@ -7,8 +8,9 @@ require_relative 'play_style'
 
 module Calculated
   class API
+    @@player_cache = DataCache.new(600)
     def self.player(id)
-      return request("api/player/#{id}")
+      return @@player_cache.fetch(id) { request("api/player/#{id}") }
     end
 
     def self.ranks(id, account = id)
@@ -24,8 +26,11 @@ module Calculated
       return Ranks.new(id, account, **ranks)
     end
 
+    @@play_style_cache = DataCache.new(600)
     def self.play_style(id)
-      return PlayStyle.new(request("api/player/#{id}/play_style/all"))
+      return @@play_style_cache.fetch(id) {
+        PlayStyle.new(request("api/player/#{id}/play_style/all"))
+      }
     end
 
     ##### PRIVATE #####
