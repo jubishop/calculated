@@ -72,6 +72,9 @@ Naming/FileName:
 Style/BlockDelimiters:
   EnforcedStyle: always_braces
 
+Style/ClassVars:
+  Enabled: false
+
 Style/Copyright:
   Enabled: false
 

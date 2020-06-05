@@ -14,12 +14,8 @@ module Calculated
       return @attributes.fetch(name.to_s)
     end
 
-    def method_missing(name)
-      return attribute(name)
-    end
-
-    def each
-      attributes.each { |attribute| yield attribute }
+    def each(&block)
+      attributes.each(&block)
     end
   end
 end
