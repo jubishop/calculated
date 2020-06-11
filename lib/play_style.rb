@@ -2,8 +2,6 @@ module Calculated
   class PlayStyle
     include Enumerable
 
-    attr_reader :attributes
-
     def initialize(data)
       @attributes = data['dataPoints'].to_h { |entry|
         [entry['name'], entry['average']]
@@ -15,7 +13,7 @@ module Calculated
     end
 
     def each(&block)
-      attributes.each(&block)
+      @attributes.each(&block)
     end
   end
 end
