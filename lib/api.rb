@@ -1,5 +1,6 @@
 require 'http'
 
+require 'core'
 require 'datacache'
 require 'rlranks'
 
@@ -8,7 +9,7 @@ require_relative 'play_style'
 
 module Calculated
   class API
-    @@player_cache = DataCache.new(600)
+    @@player_cache = DataCache.new(10.minutes)
     def self.player(id)
       return @@player_cache.fetch(id) { request("api/player/#{id}") }
     end
@@ -23,7 +24,7 @@ module Calculated
       }
       raise Error if ranks.empty?
 
-      return Ranks.new(id, account, **ranks)
+      return RLRanks.new(id, account, **ranks)
     end
 
     @@play_style_cache = DataCache.new(600)
