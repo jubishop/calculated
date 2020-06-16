@@ -9,7 +9,7 @@ require_relative 'play_style'
 
 module Calculated
   class API
-    @@player_cache = DataCache.new(10.minutes)
+    @@player_cache = DataCache.new(1.hour)
     def self.player(id)
       return @@player_cache.fetch(id) { request("api/player/#{id}") }
     end
@@ -27,7 +27,7 @@ module Calculated
       return RLRanks.new(id, account, **ranks)
     end
 
-    @@play_style_cache = DataCache.new(600)
+    @@play_style_cache = DataCache.new(10.minutes)
     def self.play_style(id)
       return @@play_style_cache.fetch(id) {
         PlayStyle.new(request("api/player/#{id}/play_style/all"))
