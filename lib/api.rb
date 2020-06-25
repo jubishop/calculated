@@ -2,6 +2,7 @@ require 'http'
 
 require 'core'
 require 'datacache'
+require 'duration'
 require 'rlranks'
 
 require_relative 'exceptions'
