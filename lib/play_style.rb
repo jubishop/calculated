@@ -9,7 +9,7 @@ module Calculated
         avg = if entry['name'].start_with?('time')
                 entry['average'].seconds
               else
-                entry['average'].round(2)
+                entry['average'].round(3)
               end
         [entry['name'], avg]
       }
