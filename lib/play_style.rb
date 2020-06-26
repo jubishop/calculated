@@ -1,10 +1,17 @@
+require 'duration'
+
 module Calculated
   class PlayStyle
     include Enumerable
 
     def initialize(data)
       @attributes = data['dataPoints'].to_h { |entry|
-        [entry['name'], entry['average']]
+        avg = if entry['name'].start_with?('time')
+                entry['average'].seconds
+              else
+                entry['average'].round(2)
+              end
+        [entry['name'], avg]
       }
     end
 
