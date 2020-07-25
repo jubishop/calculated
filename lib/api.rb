@@ -24,6 +24,7 @@ module Calculated
         mmr = info.fetch('rating')
         if rank.positive?
           ranks[RANK_MAP.fetch(playlist.to_sym)] = [rank - 1, mmr]
+        end
       }
       raise Error if ranks.empty?
 
