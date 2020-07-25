@@ -21,7 +21,9 @@ module Calculated
       ranks = {}
       rank_list.each_pair { |playlist, info|
         rank = info.fetch('rank')
-        ranks[RANK_MAP.fetch(playlist.to_sym)] = rank - 1 if rank.positive?
+        mmr = info.fetch('rating')
+        if rank.positive?
+          ranks[RANK_MAP.fetch(playlist.to_sym)] = [rank - 1, mmr]
       }
       raise Error if ranks.empty?
 
