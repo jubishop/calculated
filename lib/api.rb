@@ -22,7 +22,7 @@ module Calculated
       rank_list.each_pair { |playlist, info|
         rank = info.fetch('rank')
         mmr = info.fetch('rating')
-        if rank.positive?
+        if rank.positive? && RANK_MAP.key?(playlist.to_sym)
           ranks[RANK_MAP.fetch(playlist.to_sym)] = [rank - 1, mmr]
         end
       }
