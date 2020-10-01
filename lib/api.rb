@@ -22,7 +22,7 @@ module Calculated
       rank_list.each_pair { |playlist, info|
         rank = info.fetch('rank')
         mmr = info.fetch('rating')
-        if rank.positive? && RANK_MAP.key?(playlist.to_sym)
+        if rank.positive?
           ranks[RANK_MAP.fetch(playlist.to_sym)] = [rank - 1, mmr]
         end
       }
@@ -48,7 +48,8 @@ module Calculated
       rumble: :rumble,
       snowday: :snow_day,
       solo: :solo_standard,
-      standard: :standard
+      standard: :standard,
+      tournament: :tournament
     }.freeze
     private_constant :RANK_MAP
 
