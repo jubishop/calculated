@@ -13,6 +13,7 @@ module Calculated
               end
         [entry['name'], avg]
       }
+      puts @attributes
     end
 
     def attribute(name)
