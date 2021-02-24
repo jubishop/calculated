@@ -47,7 +47,6 @@ module Calculated
       hoops: :hoops,
       rumble: :rumble,
       snowday: :snow_day,
-      solo: :solo_standard,
       standard: :standard,
       tournament: :tournament
     }.freeze
