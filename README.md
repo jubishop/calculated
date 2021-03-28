@@ -1,6 +1,6 @@
 # Calculated
 
-[![Rubocop Status](https://github.com/jubishop/calculated/workflows/Rubocop/badge.svg)](https://github.com/jubishop/calculated/actions)
+[![Rubocop Status](https://github.com/jubishop/calculated/workflows/Rubocop/badge.svg)](https://github.com/jubishop/calculated/actions/workflows/rubocop.yml)
 
 A Ruby library for calculated.gg's undocumented API.
 
