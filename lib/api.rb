@@ -6,13 +6,11 @@ require 'duration'
 require 'rlranks'
 
 require_relative 'exceptions'
-require_relative 'play_style'
 
 module Calculated
   class API
-    @@player_cache = DataCache.new(1.hour)
     def self.player(id)
-      return @@player_cache.fetch(id) { request("api/player/#{id}") }
+      return self.class.player_cache.fetch(id) { request("api/player/#{id}") }
     end
 
     def self.ranks(id, account = id)
@@ -31,13 +29,6 @@ module Calculated
       return RLRanks.new(id, account, **ranks)
     end
 
-    @@play_style_cache = DataCache.new(10.minutes)
-    def self.play_style(id)
-      return @@play_style_cache.fetch(id) {
-        PlayStyle.new(request("api/player/#{id}/play_style/all"))
-      }
-    end
-
     ##### PRIVATE #####
 
     RANK_MAP = {
@@ -52,23 +43,29 @@ module Calculated
     }.freeze
     private_constant :RANK_MAP
 
-    def self.request(path)
-      uri = HTTP::URI.new(
-          scheme: 'https',
-          host: 'calculated.gg',
-          path: path)
+    @player_cache = DataCache.new(1.hour)
+    class << self
+      private
 
-      begin
-        response = HTTP.get(uri)
-        raise Calculated::Error, uri unless response.status.success?
+      attr_reader :player_cache
 
-        data = response.parse
-      rescue HTTP::Error
-        raise Calculated::Error, uri
+      def request(path)
+        uri = HTTP::URI.new(
+            scheme: 'https',
+            host: 'calculated.gg',
+            path: path)
+
+        begin
+          response = HTTP.get(uri)
+          raise Calculated::Error, uri unless response.status.success?
+
+          data = response.parse
+        rescue HTTP::Error
+          raise Calculated::Error, uri
+        end
+
+        return data
       end
-
-      return data
     end
-    private_class_method :request
   end
 end

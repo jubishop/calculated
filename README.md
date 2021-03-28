@@ -1,24 +1,29 @@
 # Calculated
 
-A Ruby library for calculated.gg's undocumented API
+[![Rubocop Status](https://github.com/jubishop/calculated/workflows/Rubocop/badge.svg)](https://github.com/jubishop/calculated/actions)
+
+A Ruby library for calculated.gg's undocumented API.
 
 ## Installation
 
-Add these lines to your application's Gemfile:
+### Global installation
+
+```zsh
+gem install calculated --source https://www.jubigems.org/
+```
+
+### In a Gemfile
 
 ```ruby
-gem 'http'
-
-gem 'core', github: 'jubishop/core'
-gem 'datacache', github: 'jubishop/datacache'
-gem 'duration', github: 'jubishop/duration'
-gem 'rlranks', github: 'jubishop/rlranks'
-
-gem 'calculated', github: 'jubishop/calculated'
+gem 'calculated', source: 'https://www.jubigems.org/'
 ```
 
-And then execute:
+## Usage
 
-```sh
-$ bundle install
+```ruby
+Calculated::API.ranks(ENV['STEAM_ID'])
 ```
+
+## License
+
+The gem is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).

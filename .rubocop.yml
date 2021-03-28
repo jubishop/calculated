@@ -1,4 +1,2 @@
-inherit_from: ~/.rubocop.yml
-
-Style/ClassVars:
-  Enabled: false
+inherit_from:
+  - https://raw.githubusercontent.com/jubishop/core/master/.rubocop.yml
