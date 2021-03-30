@@ -10,7 +10,7 @@ require_relative 'exceptions'
 module Calculated
   class API
     def self.player(id)
-      return self.class.player_cache.fetch(id) { request("api/player/#{id}") }
+      return player_cache.fetch(id) { request("api/player/#{id}") }
     end
 
     def self.ranks(id, account = id)
