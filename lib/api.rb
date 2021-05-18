@@ -59,7 +59,7 @@ module Calculated
           response = HTTP.get(uri)
           raise Calculated::Error, uri unless response.status.success?
 
-          data = response.parse
+          data = response.parse(:json)
         rescue HTTP::Error
           raise Calculated::Error, uri
         end

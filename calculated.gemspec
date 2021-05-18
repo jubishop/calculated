@@ -1,6 +1,6 @@
 Gem::Specification.new do |spec|
   spec.name          = 'calculated'
-  spec.version       = '1.0'
+  spec.version       = '1.1'
   spec.summary       = %q(A Ruby library for calculated.gg's undocumented API.)
   spec.authors       = ['Justin Bishop']
   spec.email         = ['jubishop@gmail.com']
